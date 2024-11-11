@@ -36,18 +36,18 @@ export default class CustomModal extends Component {
 
     return (
       <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Todo Item</ModalHeader>
+        <ModalHeader toggle={toggle}>Liste de produit</ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="todo-title">Title</Label>
+              <Label for="todo-title">Nom du produit</Label>
               <Input
                 type="text"
                 id="todo-title"
                 name="title"
                 value={this.state.activeItem.title}
                 onChange={this.handleChange}
-                placeholder="Enter Todo Title"
+                placeholder="Inserer le nom du produit"
               />
             </FormGroup>
             <FormGroup>
@@ -61,6 +61,39 @@ export default class CustomModal extends Component {
                 placeholder="Enter Todo description"
               />
             </FormGroup>
+            {/* <FormGroup>
+              <Label for="todo-title">Title</Label>
+              <Input
+                type="text"
+                id="todo-title"
+                name="title"
+                value={this.state.activeItem.title}
+                onChange={this.handleChange}
+                placeholder="Enter Todo Title"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="todo-title">Title</Label>
+              <Input
+                type="text"
+                id="todo-title"
+                name="title"
+                value={this.state.activeItem.title}
+                onChange={this.handleChange}
+                placeholder="Enter Todo Title"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="todo-title">Title</Label>
+              <Input
+                type="text"
+                id="todo-title"
+                name="title"
+                value={this.state.activeItem.title}
+                onChange={this.handleChange}
+                placeholder="Enter Todo Title"
+              />
+            </FormGroup> */}
             <FormGroup check>
               <Label check>
                 <Input

@@ -44,66 +44,55 @@ export default class CustomModal extends Component {
               <Input
                 type="text"
                 id="todo-title"
-                name="title"
-                value={this.state.activeItem.title}
+                name="Nom_du_produit"
+                value={this.state.activeItem.Nom_du_produit}
                 onChange={this.handleChange}
                 placeholder="Inserer le nom du produit"
               />
             </FormGroup>
             <FormGroup>
-              <Label for="todo-description">Description</Label>
+              <Label for="todo-description">Description du produit</Label>
               <Input
                 type="text"
                 id="todo-description"
-                name="description"
-                value={this.state.activeItem.description}
+                name="description_du_produit"
+                value={this.state.activeItem.description_du_produit}
                 onChange={this.handleChange}
-                placeholder="Enter Todo description"
-              />
-            </FormGroup>
-            {/* <FormGroup>
-              <Label for="todo-title">Title</Label>
-              <Input
-                type="text"
-                id="todo-title"
-                name="title"
-                value={this.state.activeItem.title}
-                onChange={this.handleChange}
-                placeholder="Enter Todo Title"
+                placeholder="Inserer description du produit"
               />
             </FormGroup>
             <FormGroup>
-              <Label for="todo-title">Title</Label>
+              <Label for="todo-title">Type de produit</Label>
               <Input
                 type="text"
                 id="todo-title"
-                name="title"
-                value={this.state.activeItem.title}
+                name="Type_de_produit"
+                value={this.state.activeItem.Type_de_produit}
                 onChange={this.handleChange}
-                placeholder="Enter Todo Title"
+                placeholder="Inserer type de produit"
               />
             </FormGroup>
             <FormGroup>
-              <Label for="todo-title">Title</Label>
+              <Label for="todo-title">Quantite en stock</Label>
               <Input
-                type="text"
+                type="number"
                 id="todo-title"
-                name="title"
-                value={this.state.activeItem.title}
+                name="Quantite_en_stock"
+                value={this.state.activeItem.Quantite_en_stock}
                 onChange={this.handleChange}
-                placeholder="Enter Todo Title"
+                placeholder="Quantite en stock"
               />
-            </FormGroup> */}
-            <FormGroup check>
-              <Label check>
-                <Input
-                  type="checkbox"
-                  name="completed"
-                  checked={this.state.activeItem.completed}
-                  onChange={this.handleChange}
-                />
-                Completed
-              </Label>
+            </FormGroup>
+            <FormGroup>
+              <Label for="todo-title">Seuil minimum</Label>
+              <Input
+                type="number"
+                id="todo-title"
+                name="Seuil_minimun_en_stock"
+                value={this.state.activeItem.Seuil_minimun_en_stock}
+                onChange={this.handleChange}
+                placeholder="Seuil minimum"
+              />
             </FormGroup>
           </Form>
         </ModalBody>
@@ -112,7 +101,7 @@ export default class CustomModal extends Component {
             color="success"
             onClick={() => onSave(this.state.activeItem)}
           >
-            Save
+            Sauvegarder
           </Button>
         </ModalFooter>
       </Modal>

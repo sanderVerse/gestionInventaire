@@ -7,12 +7,14 @@ class App extends Component {
     super(props);
     this.state = {
       viewCompleted: false,
-      todoList: [],
+      gestionList: [],
       modal: false,
       activeItem: {
-        title: "",
-        description: "",
-        completed: false,
+        Nom_du_produit: "",
+        description_du_produit: "",
+        Type_de_produit: "",
+        Quantite_en_stock: 0,
+        Seuil_minimun_en_stock: 0
       },
     };
   }
@@ -24,7 +26,7 @@ class App extends Component {
   refreshList = () => {
     axios
       .get("/api/gestion/")
-      .then((res) => this.setState({ todoList: res.data }))
+      .then((res) => this.setState({ gestionList: res.data }))
       .catch((err) => console.log(err));
   };
 
@@ -37,23 +39,27 @@ class App extends Component {
 
     if (item.id) {
       axios
-        .put(`/api/todos/${item.id}/`, item)
+        .put(`/api/gestion/${item.id}/`, item)
         .then((res) => this.refreshList());
       return;
     }
     axios
-      .post("/api/todos/", item)
+      .post("/api/gestion/", item)
       .then((res) => this.refreshList());
   };
 
   handleDelete = (item) => {
     axios
-      .delete(`/api/todos/${item.id}/`)
+      .delete(`/api/gestion/${item.id}/`)
       .then((res) => this.refreshList());
   };
 
   createItem = () => {
-    const item = { title: "", description: "", completed: false };
+    const item = {Nom_du_produit: "",
+        description_du_produit: "",
+        Type_de_produit: "",
+        Quantite_en_stock: 0,
+        Seuil_minimun_en_stock: 0 };
 
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
@@ -62,18 +68,8 @@ class App extends Component {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
-  displayCompleted = (status) => {
-    if (status) {
-      return this.setState({ viewCompleted: true });
-    }
-
-    return this.setState({ viewCompleted: false });
-  };
-
-
   renderItems = () => {
-    const newItems = this.state.todoList
-
+    const newItems = this.state.gestionList
     return newItems.map((item) => (
       <li
         key={item.id}
@@ -83,9 +79,9 @@ class App extends Component {
           className={`todo-title mr-2 ${
             this.state.viewCompleted ? "completed-todo" : ""
           }`}
-          title={item.description}
+          title={item.description_du_produit}
         >
-          {item.title}
+          {item.Nom_du_produit}
         </span>
         <span>
           <button

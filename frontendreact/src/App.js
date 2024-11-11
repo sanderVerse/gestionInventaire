@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewCompleted: false,
+      enAchat: false,
       gestionList: [],
       modal: false,
       activeItem: {
@@ -68,8 +68,39 @@ class App extends Component {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
+  displayCompleted = (status) => {
+    if (status) {
+      return this.setState({ enAchat: true });
+    }
+
+    return this.setState({ enAchat : false });
+  };
+
+  renderTabList = () => {
+    return (
+      <div className="nav nav-tabs">
+        <span
+          onClick={() => this.displayCompleted(true)}
+          className={this.state.enAchat ? "nav-link active" : "nav-link"}
+        >
+          En achat
+        </span>
+        <span
+          onClick={() => this.displayCompleted(false)}
+          className={this.state.enAchat ? "nav-link" : "nav-link active"}
+        >
+          Pas en achat
+        </span>
+      </div>
+    );
+  };
+
   renderItems = () => {
-    const newItems = this.state.gestionList
+    const {enAchat} = this.state;
+    const newItems = this.state.gestionList.filter(
+      item => (item.Quantite_en_stock < item.Seuil_minimun_en_stock) === enAchat
+    )
+
     return newItems.map((item) => (
       <li
         key={item.id}
@@ -77,7 +108,7 @@ class App extends Component {
       >
         <span
           className={`todo-title mr-2 ${
-            this.state.viewCompleted ? "completed-todo" : ""
+            this.state.enAchat ? "completed-todo" : ""
           }`}
           title={item.description_du_produit}
         >
@@ -116,6 +147,7 @@ class App extends Component {
                   Ajouter article
                 </button>
               </div>
+              {this.renderTabList()}
               <ul className="list-group list-group-flush border-top-0">
                 {this.renderItems()}
               </ul>
